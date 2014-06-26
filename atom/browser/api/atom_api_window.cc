@@ -7,7 +7,6 @@
 #include "atom/browser/api/atom_api_web_contents.h"
 #include "atom/browser/native_window.h"
 #include "atom/common/native_mate_converters/function_converter.h"
-#include "atom/common/native_mate_converters/value_converter.h"
 #include "base/bind.h"
 #include "base/callback.h"
 #include "content/public/browser/render_process_host.h"
@@ -61,7 +60,7 @@ void OnCapturePageDone(
 }  // namespace
 
 
-Window::Window(base::DictionaryValue* options)
+Window::Window(const mate::Dictionary& options)
     : window_(NativeWindow::Create(options)) {
   window_->InitFromOptions(options);
   window_->AddObserver(this);
@@ -108,10 +107,8 @@ void Window::OnRendererResponsive() {
 }
 
 // static
-mate::Wrappable* Window::New(mate::Arguments* args,
-                             const base::DictionaryValue& options) {
-  scoped_ptr<base::DictionaryValue> copied_options(options.DeepCopy());
-  return new Window(copied_options.get());
+mate::Wrappable* Window::New(const mate::Dictionary& options) {
+  return new Window(options);
 }
 
 void Window::Destroy() {
@@ -287,11 +284,6 @@ void Window::InspectElement(int x, int y) {
   window_->InspectElement(x, y);
 }
 
-void Window::DebugDevTools() {
-  if (window_->IsDevToolsOpened())
-    NativeWindow::Debug(window_->GetDevToolsWebContents());
-}
-
 void Window::FocusOnWebView() {
   window_->FocusOnWebView();
 }
@@ -379,7 +371,6 @@ void Window::BuildPrototype(v8::Isolate* isolate,
       .SetMethod("closeDevTools", &Window::CloseDevTools)
       .SetMethod("isDevToolsOpened", &Window::IsDevToolsOpened)
       .SetMethod("inspectElement", &Window::InspectElement)
-      .SetMethod("debugDevTools", &Window::DebugDevTools)
       .SetMethod("focusOnWebView", &Window::FocusOnWebView)
       .SetMethod("blurWebView", &Window::BlurWebView)
       .SetMethod("isWebViewFocused", &Window::IsWebViewFocused)
