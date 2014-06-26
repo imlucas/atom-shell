@@ -32,7 +32,8 @@ def parse_args():
                       required=False)
   parser.add_argument('-t', '--target',
                       help='Build specified target',
-                      default='atom',
+                      # default='atom',
+                      default='mongoscope',
                       required=False)
   return parser.parse_args()
 

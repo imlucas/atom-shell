@@ -38,10 +38,10 @@ void AtomMainDelegate::OverrideFrameworkBundlePath() {
 }
 
 void AtomMainDelegate::OverrideChildProcessPath() {
-  base::FilePath helper_path = GetFrameworksPath().Append("Atom Helper.app")
+  base::FilePath helper_path = GetFrameworksPath().Append("mongoscope Helper.app")
                                                   .Append("Contents")
                                                   .Append("MacOS")
-                                                  .Append("Atom Helper");
+                                                  .Append("mongoscope Helper");
   PathService::Override(content::CHILD_PROCESS_EXE, helper_path);
 }
 

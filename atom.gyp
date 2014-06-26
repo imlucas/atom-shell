@@ -3,15 +3,15 @@
     'includes': [
       'vendor/native_mate/native_mate_files.gypi',
     ],
-    'project_name': 'atom',
-    'product_name': 'Atom',
+    'project_name': 'mongoscope',
+    'product_name': 'mongoscope',
     'framework_name': 'Atom Framework',
     'app_sources': [
       'atom/app/atom_main.cc',
       'atom/app/atom_main.h',
     ],
     'bundle_sources': [
-      'atom/browser/resources/mac/atom.icns',
+      'atom/browser/resources/mac/mongoscope.icns'
     ],
     'coffee_sources': [
       'atom/browser/api/lib/app.coffee',

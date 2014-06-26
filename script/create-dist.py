@@ -52,7 +52,7 @@ TARGET_BINARIES = {
 }
 TARGET_DIRECTORIES = {
   'darwin': [
-    'Atom.app',
+    'mongoscope.app',
   ],
   'win32': [
     'resources',
@@ -203,7 +203,7 @@ def download_libchromiumcontent_symbols(url):
 def create_symbols():
   build = os.path.join(SOURCE_ROOT, 'script', 'build.py')
   subprocess.check_output([sys.executable, build, '-c', 'Release',
-                           '-t', 'atom_dump_symbols'])
+                           '-t', 'mongoscope_dump_symbols'])
 
   directory = 'Atom-Shell.breakpad.syms'
   shutil.copytree(os.path.join(OUT_DIR, directory),
@@ -212,7 +212,7 @@ def create_symbols():
 
 
 def create_dist_zip():
-  dist_name = 'atom-shell-{0}-{1}-{2}.zip'.format(ATOM_SHELL_VERSION,
+  dist_name = 'mongoscope-{0}-{1}-{2}.zip'.format(ATOM_SHELL_VERSION,
                                                   TARGET_PLATFORM, DIST_ARCH)
   zip_file = os.path.join(SOURCE_ROOT, 'dist', dist_name)
 
@@ -225,7 +225,7 @@ def create_dist_zip():
 
 
 def create_symbols_zip():
-  dist_name = 'atom-shell-{0}-{1}-{2}-symbols.zip'.format(ATOM_SHELL_VERSION,
+  dist_name = 'mongoscope-{0}-{1}-{2}-symbols.zip'.format(ATOM_SHELL_VERSION,
                                                           TARGET_PLATFORM,
                                                           DIST_ARCH)
   zip_file = os.path.join(SOURCE_ROOT, 'dist', dist_name)
